@@ -8,5 +8,3 @@ let pokemonList = [
     {name: "voltorb", height: 0.5, types: "electric", speed: 100},
     {name: "spinda", height: 1.1, types: " normal", speed: 60}
 ];
-
-console.log(pokemonList[2]);
