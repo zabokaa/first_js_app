@@ -3,8 +3,8 @@
 
 ## table of contents
 * [objective](#objective)
-* [key features](#key features)
-* [project status](#project status)
+* [key features](#key-features)
+* [project status](#project-status)
 * [acknowledgements](#acknowledgements)
 
 ## objective
