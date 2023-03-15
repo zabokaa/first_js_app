@@ -24,5 +24,19 @@ for (let i = 0; i < pokemonList.length; i++) {
     }
 }
 
+function printNames(){
+    for (let i = 0; i < pokemonList.length; i++){
+        document.write("<p>" + pokemonList[i].name + "</p>");
+    }
+}
 
+// calling th function twice:
+printNames();
+printNames();
+
+function helloMsg (firstName, lastName) {
+    document.write("Hola, me llamo " + firstName + " " + lastName + "! ")
+}
+helloMsg ("Rosa", "Luxemburg");
+helloMsg ("Minerva","Mirabel");
 
