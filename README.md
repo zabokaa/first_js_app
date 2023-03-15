@@ -22,3 +22,7 @@ project is: _in progress
 
 ## acknowledgements
 this project was based on full-stack immersion course @ CareerFoundry
+
+```diff
+* text in purple *
+```
