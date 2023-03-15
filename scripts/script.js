@@ -40,3 +40,8 @@ function helloMsg (firstName, lastName) {
 helloMsg ("Rosa", "Luxemburg");
 helloMsg ("Minerva","Mirabel");
 
+function Sum(val1, val2) {
+    return val1 - val2;
+}
+
+document.write(Sum(10, 5))
