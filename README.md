@@ -1,4 +1,5 @@
-#  pokédex  named :purple_circle: *My Pokemon List* :purple_circle:
+#  pokédex  named 
+# :purple_circle: *My Pokemon List* :purple_circle:
 --> my very first js app <--
 
 ## table of contents
@@ -23,6 +24,3 @@ project is: _in progress
 ## acknowledgements
 this project was based on full-stack immersion course @ CareerFoundry
 
-```diff
-* text in purple *
-```
