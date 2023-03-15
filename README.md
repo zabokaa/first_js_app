@@ -1,4 +1,4 @@
-#  pokédex  named *My Pokemon List*
+#  pokédex  named :purple_circle: *My Pokemon List* :purple_circle:
 --> my very first js app <--
 
 ## table of contents
