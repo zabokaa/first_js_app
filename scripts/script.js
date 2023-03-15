@@ -45,3 +45,12 @@ function Sum(val1, val2) {
 }
 
 document.write(Sum(10, 5))
+
+let age = 12;
+
+function getNewAge(age) {
+ age ++;
+ return age;
+}
+
+document.write("<p>" + getNewAge(age) + "<p>");
