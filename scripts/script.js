@@ -31,7 +31,6 @@ console.log(pokemonRepo.add(pokemon));
 
 console.log(typeof pokemon);
 
-
 pokemonRepo.getAll().forEach(function(pokemon) {
             if ((pokemon.speed >= 70) && (pokemon.types === "normal")) {
                 document.write("wow, " + pokemon.name + " is speedy" + " (speed: " + pokemon.speed + ") and poisonous!" + "<br>");
@@ -41,4 +40,8 @@ pokemonRepo.getAll().forEach(function(pokemon) {
             };
 });
 
+// trying out filter func
+let lookFor = "raticate"  // here enter the name of pokemon looking for
+const found = pokemonRepo.getAll().filter(pokemon => pokemon.name === lookFor);
+console.log(found);
 
