@@ -10,11 +10,13 @@ let pokemonRepo = (function() {
 
     function getAll() {
         return pokemonList;
-    }
+    };
     
     function add(pokemon) {
-        pokemonList.push(pokemon);
-    }
+        if (typeof pokemon === "object") {
+            pokemonList.push(pokemon);
+        }  
+    };
     
     return {
         getAll: getAll,     //key values
@@ -26,6 +28,8 @@ console.log(pokemonRepo.getAll());
 
 let pokemon = {name: "spinda", height: 1.1, types: " normal", speed: 60};
 console.log(pokemonRepo.add(pokemon));
+
+console.log(typeof pokemon);
 
 
 pokemonRepo.getAll().forEach(function(pokemon) {
