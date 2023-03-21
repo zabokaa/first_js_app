@@ -42,17 +42,17 @@ let pokemonRepo = (function() {
         let pokemonListSearch = document.querySelector("pokemon.list");      
         let pokemonEle = pokemonListSearch.getElementsByTagName("ul");
         for (i = 0; i < pokemonEle.length; i++) { 
-            pokemonEle[i].pokemonList.remove("hide")               
+            pokemonEle[i].pokemonListSearch.remove("hide")               
         }
         for (i = 0; i < pokemonEle.length; i++) {
             if (input.value = " ") {  
             }
             else if (pokemonEle[i].innerText.indexOf(input.value)) {
-                pokemonEle[i].pokemonList.add("hide");
+                pokemonEle[i].pokemonListSearch.add("hide");
             }
         }
     }
-s
+
     
     return {
         getAll: getAll,     //key values
