@@ -27,22 +27,14 @@ let pokemonRepo = (function() {
         listItem.appendChild(button);
         pokemonList.appendChild(listItem);
         /* adding 1st event listener: */
-        button.addEventListener("click", showDetails); 
+        button.addEventListener("click", () => showDetails(pokemon)); 
     };
 
     function showDetails(pokemon) {
-        let selectedPokemon = pokemonList.find(pokemon => pokemon.name === pokemon.name);
-        if (selectedPokemon) {
-            console.log("name: " + selectedPokemon.name);
-            console.log("height: " + selectedPokemon.height);
-            console.log("types: " + selectedPokemon.types.join(" & "));
-            console.log("speed: " + selectedPokemon.speed);
+        if (pokemon) {
+            console.log(pokemon);
         }
     }
-    
-    // function showDetails(pokemon) {
-    //         console.log(pokemonList);
-    // };
     
     return {
         getAll: getAll,     //key values
@@ -68,5 +60,19 @@ pokemonRepo.getAll().forEach(function(pokemon) {
     pokemonRepo.addListItem(pokemon);           
 });
 
+// function search_pokemon() {
+//     let input = document.getElementById("searchbar").value
+//     input=input.toLowerCase();
+//     let x = document.getElementsByClassName(pokemonRepo.addListItem(pokemon));
+      
+//     for (i = 0; i < x.length; i++) { 
+//         if (!x[i].innerHTML.toLowerCase().includes(input)) {
+//             x[i].style.display="none";
+//         }
+//         else {
+//             x[i].style.display="list-item";                 
+//         }
+//     }
+// }
 
 
