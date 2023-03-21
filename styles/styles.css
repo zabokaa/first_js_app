@@ -41,6 +41,7 @@ body {
 }
 
 #searchbar{
+    color: var(--primary-color);
     margin-left: 15%;
     padding:15px;
     border-radius: 10px;

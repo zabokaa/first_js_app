@@ -35,13 +35,33 @@ let pokemonRepo = (function() {
             console.log(pokemon);
         }
     }
+
+    function searchPokemon() {
+        let input = document.getElementById("searchbar");
+        input = input.toLowerCase();
+        let pokemonListSearch = document.querySelector("pokemon.list");      
+        let pokemonEle = pokemonListSearch.getElementsByTagName("ul");
+        for (i = 0; i < pokemonEle.length; i++) { 
+            pokemonEle[i].pokemonList.remove("hide")               
+        }
+        for (i = 0; i < pokemonEle.length; i++) {
+            if (input.value = " ") {  
+            }
+            else if (pokemonEle[i].innerText.indexOf(input.value)) {
+                pokemonEle[i].pokemonList.add("hide");
+            }
+        }
+    }
+s
     
     return {
         getAll: getAll,     //key values
         add: add,
         addListItem: addListItem,
-        showDetails: showDetails
+        showDetails: showDetails,
+        searchPokemon: searchPokemon
     };
+
 })();  //self executing func
 
 console.log(pokemonRepo.getAll());
@@ -51,28 +71,9 @@ console.log(pokemonRepo.add(pokemon));
 
 console.log(typeof pokemon);
 
-// console.log(pokemonRepo.showDetails(pokemon)); 
-// pokemonRepo.addListItem().forEach(function(pokemon) {
-//     console.log(showDetails(pokemonList));           
-// });
-
 pokemonRepo.getAll().forEach(function(pokemon) {
     pokemonRepo.addListItem(pokemon);           
 });
 
-// function search_pokemon() {
-//     let input = document.getElementById("searchbar").value
-//     input=input.toLowerCase();
-//     let x = document.getElementsByClassName(pokemonRepo.addListItem(pokemon));
-      
-//     for (i = 0; i < x.length; i++) { 
-//         if (!x[i].innerHTML.toLowerCase().includes(input)) {
-//             x[i].style.display="none";
-//         }
-//         else {
-//             x[i].style.display="list-item";                 
-//         }
-//     }
-// }
 
 
