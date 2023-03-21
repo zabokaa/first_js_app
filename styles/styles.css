@@ -13,6 +13,8 @@
     font-weight: bold;
     text-decoration: none;
     margin: 8px 4px;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 
 h2 {
