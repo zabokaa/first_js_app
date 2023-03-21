@@ -13,7 +13,7 @@ let pokemonRepo = (function() {
     };
     
     function add(pokemon) {
-        if (typeof pokemon === "object") {
+        if (typeof pokemon === "object") {  /*TO DO: begr auf specific vaues */
             pokemonList.push(pokemon);
         }  
     };
@@ -26,12 +26,29 @@ let pokemonRepo = (function() {
         button.innerText = pokemon.name;
         listItem.appendChild(button);
         pokemonList.appendChild(listItem);
+        /* adding 1st event listener: */
+        button.addEventListener("click", showDetails); 
+    };
+
+    function showDetails(pokemon) {
+        let selectedPokemon = pokemonList.find(pokemon => pokemon.name === pokemon.name);
+        if (selectedPokemon) {
+            console.log("name: " + selectedPokemon.name);
+            console.log("height: " + selectedPokemon.height);
+            console.log("types: " + selectedPokemon.types.join(" & "));
+            console.log("speed: " + selectedPokemon.speed);
+        }
     }
+    
+    // function showDetails(pokemon) {
+    //         console.log(pokemonList);
+    // };
     
     return {
         getAll: getAll,     //key values
         add: add,
-        addListItem: addListItem
+        addListItem: addListItem,
+        showDetails: showDetails
     };
 })();  //self executing func
 
@@ -42,9 +59,13 @@ console.log(pokemonRepo.add(pokemon));
 
 console.log(typeof pokemon);
 
+// console.log(pokemonRepo.showDetails(pokemon)); 
+// pokemonRepo.addListItem().forEach(function(pokemon) {
+//     console.log(showDetails(pokemonList));           
+// });
+
 pokemonRepo.getAll().forEach(function(pokemon) {
-    pokemonRepo.addListItem(pokemon);        
-         
+    pokemonRepo.addListItem(pokemon);           
 });
 
 
