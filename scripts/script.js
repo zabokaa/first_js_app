@@ -1,12 +1,8 @@
 // IIFE:
 
 let pokemonRepo = (function() {
-    let pokemonList = [
-        {name: "venonant", height: 1.0, types: ["bug", "poison"],speed: 45},
-        {name: "raticate", height: 0.7, types: "normal", speed: 97},
-        {name: "tentacruel", height: 1.6, types: ["water", "poison"], speed: 100},
-        {name: "voltorb", height: 0.5, types: "electric", speed: 100}
-    ];
+    let pokemonList = [];
+    let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
     function getAll() {
         return pokemonList;
@@ -30,36 +26,48 @@ let pokemonRepo = (function() {
         button.addEventListener("click", () => showDetails(pokemon)); 
     };
 
+    function loadDetails(pokemon) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            item.imageUrl = details.sprites.front_default;
+            item.height = details.height;
+            item.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        });
+    }
+
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+          return response.json();
+        }).then(function (json) {
+          json.results.forEach(function (item) {
+            let pokemon = {
+              name: item.name,
+              detailsUrl: item.url
+            };
+            add(pokemon);
+          });
+        }).catch(function (e) {
+          console.error(e);
+        })
+      }
+    
     function showDetails(pokemon) {
-        if (pokemon) {
-            console.log(pokemon);
-        }
-    }
-
-    function searchPokemon() {
-        let input = document.getElementById("searchbar");
-        input = input.toLowerCase();
-        let pokemonListSearch = document.querySelector("pokemon.list");      
-        let pokemonEle = pokemonListSearch.getElementsByTagName("ul");
-        for (i = 0; i < pokemonEle.length; i++) { 
-            pokemonEle[i].pokemonListSearch.remove("hide")               
-        }
-        for (i = 0; i < pokemonEle.length; i++) {
-            if (input.value = " ") {  
-            }
-            else if (pokemonEle[i].innerText.indexOf(input.value)) {
-                pokemonEle[i].pokemonListSearch.add("hide");
-            }
-        }
-    }
-
+        loadDetails(pokemon).then(function () {
+          console.log(pokemon);
+        });
+      }
     
     return {
         getAll: getAll,     //key values
         add: add,
         addListItem: addListItem,
-        showDetails: showDetails,
-        searchPokemon: searchPokemon
+        loadDetails: loadDetails,
+        loadList: loadList,
+        showDetails: showDetails
     };
 
 })();  //self executing func
