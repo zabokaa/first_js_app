@@ -9,9 +9,12 @@ let pokemonRepo = (function() {
     };
     
     function add(pokemon) {
-        if (typeof pokemon === "object") {  /*TO DO: begr auf specific vaues */
+        if (typeof pokemon === "object" && "name" in pokemon) {  
             pokemonList.push(pokemon);
         }  
+        else {
+          console.log("uncorrect pokemon");
+        }
     };
 
     function addListItem(pokemon) {
