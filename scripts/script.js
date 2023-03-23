@@ -26,21 +26,39 @@ let pokemonRepo = (function() {
         button.addEventListener("click", () => showDetails(pokemon)); 
     };
 
+    function showLoadingMessage() {
+      let loadingMessage = document.createElement("div");
+      loadingMessage.innerText = "Loading...";
+      document.body.appendChild(loadingMessage);
+    }
+    
+    function hideLoadingMessage() {
+      let loadingMessage = document.querySelector("div");
+      if (loadingMessage) {
+        loadingMessage.remove();
+      }
+    }
+
     function loadDetails(pokemon) {
-        let url = item.detailsUrl;
+        showLoadingMessage();
+        let url = pokemon.detailsUrl;
         return fetch(url).then(function (response) {
+            hideLoadingMessage();
             return response.json();
         }).then(function (details) {
-            item.imageUrl = details.sprites.front_default;
-            item.height = details.height;
-            item.types = details.types;
+            pokemon.imageUrl = details.sprites.front_default;
+            pokemon.height = details.height;
+            pokemon.types = details.types;
         }).catch(function (e) {
+            hideLoadingMessage();
             console.error(e);
         });
     }
 
     function loadList() {
+        showLoadingMessage();
         return fetch(apiUrl).then(function (response) {
+          hideLoadingMessage();
           return response.json();
         }).then(function (json) {
           json.results.forEach(function (item) {
@@ -51,6 +69,7 @@ let pokemonRepo = (function() {
             add(pokemon);
           });
         }).catch(function (e) {
+          hideLoadingMessage();
           console.error(e);
         })
       }
@@ -67,7 +86,9 @@ let pokemonRepo = (function() {
         addListItem: addListItem,
         loadDetails: loadDetails,
         loadList: loadList,
-        showDetails: showDetails
+        showDetails: showDetails,
+        showLoadingMessage: showLoadingMessage,
+        hideLoadingMessage: hideLoadingMessage
     };
 
 })();  //self executing func
