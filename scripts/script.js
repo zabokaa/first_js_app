@@ -23,7 +23,7 @@ let pokemonRepo = (function() {
         let button = document.createElement("button");
         button.classList.add("button-class");
         button.innerText = pokemon.name;
-        listItem.appendChild(button);
+        listItem.appendChild(button); 
         pokemonList.appendChild(listItem);
         /* adding 1st event listener: */
         button.addEventListener("click", () => showDetails(pokemon)); 
@@ -53,7 +53,7 @@ let pokemonRepo = (function() {
             pokemon.height = details.height;
             pokemon.types = details.types;
         }).catch(function (e) {
-            hideLoadingMessage();
+            hideLoadingMessage(e);
             console.error(e);
         });
     }
@@ -72,7 +72,7 @@ let pokemonRepo = (function() {
             add(pokemon);
           });
         }).catch(function (e) {
-          hideLoadingMessage();
+          hideLoadingMessage(e);
           console.error(e);
         })
       }
