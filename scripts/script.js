@@ -2,7 +2,7 @@
 
 let pokemonRepo = (function() {
     let pokemonList = [];
-    let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
+    let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=99";
 
     function getAll() {
         return pokemonList;
@@ -77,7 +77,7 @@ console.log(pokemonRepo.getAll());
 let pokemon = {name: "spinda", height: 1.1, types: " normal", speed: 60};
 console.log(pokemonRepo.add(pokemon));
 
-console.log(typeof pokemon);
+pokemonRepo.loadList(pokemon);
 
 pokemonRepo.getAll().forEach(function(pokemon) {
     pokemonRepo.addListItem(pokemon);           
