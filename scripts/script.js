@@ -33,14 +33,14 @@ let pokemonRepo = (function() {
       let loadingMessage = document.createElement("div");
       loadingMessage.innerText = "Loading...";
       document.body.appendChild(loadingMessage);
-    }
+    };
     
     function hideLoadingMessage() {
       let loadingMessage = document.querySelector("div");
       if (loadingMessage) {
         loadingMessage.remove();
       }
-    }
+    };
 
     function loadDetails(pokemon) {
         showLoadingMessage();
@@ -56,7 +56,7 @@ let pokemonRepo = (function() {
             hideLoadingMessage(e);
             console.error(e);
         });
-    }
+    };
 
     function loadList() {
         showLoadingMessage();
@@ -74,14 +74,14 @@ let pokemonRepo = (function() {
         }).catch(function (e) {
           hideLoadingMessage(e);
           console.error(e);
-        })
-      }
+        });
+      };
     
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
           console.log(pokemon);
         });
-      }
+      };
     
     return {
         getAll: getAll,     //key values
@@ -101,10 +101,10 @@ console.log(pokemonRepo.getAll());
 let pokemon = {name: "spinda", height: 1.1, types: " normal", speed: 60};
 console.log(pokemonRepo.add(pokemon));
 
-pokemonRepo.loadList(pokemon);
-
-pokemonRepo.getAll().forEach(function(pokemon) {
-    pokemonRepo.addListItem(pokemon);           
+pokemonRepo.loadList(pokemon).then(function() {
+  pokemonRepo.getAll().forEach(function(pokemon) {
+      pokemonRepo.addListItem(pokemon);           
+  });
 });
 
 
