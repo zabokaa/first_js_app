@@ -1,6 +1,8 @@
 :root {
     --primary-color: blueviolet;
     --secondary-color: blue;
+    --background-col: #7caff4;
+    --background-col-2: #997cf4;
     --text-shadow: 1.5px 1.5px #FFFFFF;
     --button-margin: 8px 4px;
     --button-paddy: 16px 32px;
@@ -8,6 +10,15 @@
 
 
 }    /* NEVER close with ';' */
+
+body { 
+  background-image: linear-gradient(to right, var(--background-col), var(--background-col-2));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
 
 .button-class {
     background-color: var(--primary-color);
@@ -30,15 +41,6 @@ h2 {
   
 }
 
-body {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 215px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 #searchbar{
     color: var(--primary-color);
