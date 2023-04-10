@@ -85,8 +85,8 @@ let pokemonRepo = (function() {
       };
 
     function showModal(title, text) {
-      modalConti.innerHTML = "";
-      let modal = document(createElement("div"));
+      modalContainer.innerHTML = '';
+      let modal = document.createElement("div");
       modal.classList.add("modal");
 
       let closeButtonEle = document.createElement("button");
@@ -104,8 +104,7 @@ let pokemonRepo = (function() {
       modal.appendChild(titleEle);
       modal.appendChild(contentEle);
       modalContainer.appendChild(modal);
-    
-    modalContainer.classList.add("is-visible");
+      modalContainer.classList.add("is-visible");
     }
 
     function hideModal() {
@@ -146,8 +145,8 @@ let pokemonRepo = (function() {
 
 console.log(pokemonRepo.getAll());
 
-// let pokemon = {name: "spinda", height: 1.1, types: " normal", speed: 60};
-// console.log(pokemonRepo.add(pokemon));
+let pokemon = {name: "spinda", height: 1.1, types: " normal", speed: 60};
+console.log(pokemonRepo.add(pokemon));
 
 pokemonRepo.loadList(pokemon).then(function() {
   pokemonRepo.getAll().forEach(function(pokemon) {

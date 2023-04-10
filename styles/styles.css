@@ -20,6 +20,11 @@ body {
   margin: 0;
 }
 
+h2 {
+  color: var(--secondary-color);
+  display: center;
+}
+
 .button-class {
     background-color: var(--primary-color);
     color: var(--secondary-color) ;
@@ -35,13 +40,6 @@ body {
     text-shadow: var(--text-shadow);
 }
 
-h2 {
-    color: var(--secondary-color);
-    display: center;
-  
-}
-
-
 #modal-container {
   position: fixed;
   padding: 20px;
@@ -54,7 +52,7 @@ h2 {
   overflow: auto;
   display: grid;
   text-align: center;
-}
+} */
 
 .modal {
   margin: auto;
@@ -74,7 +72,7 @@ h2 {
   background: none;
   color: var(--background-col-2);
   text-decoration: underline;
-}
+} 
 
 .modal h1 {
   margin-top: 0;
@@ -86,25 +84,12 @@ h2 {
 
 #modal-container {
   display: none;
-}
+} 
 
-#modal-container.is-visible {
+ #modal-container.is-visible { 
   /* CSS for modal container - add your own desired CSS styles here */
   display: block;
-}
-
-
-  input[type=text] {
-     width: 30%;
-     -webkit-transition: width 0.15s ease-in-out;
-     transition: width 0.15s ease-in-out;
-  }
-
-  /* When the input field gets focus,
-       change its width to 100% */
-  input[type=text]:focus {
-    width: 70%;
-  }
+} 
 
  /* #list{
    font-size:  1.5em;
@@ -123,6 +108,17 @@ h2 {
   display: none;
 }
 
+input[type=text] {
+  width: 30%;
+  -webkit-transition: width 0.15s ease-in-out;
+  transition: width 0.15s ease-in-out;
+}
+
+/* When the input field gets focus,
+    change its width to 100% */
+input[type=text]:focus {
+ width: 70%;
+}
 @media only screen and (min-width: 480px) and (max-width: 768px) {
        .body-style {
             width: 100%;
