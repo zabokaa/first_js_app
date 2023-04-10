@@ -118,6 +118,17 @@ let pokemonRepo = (function() {
       }
     });
 
+    modalContainer.addEventListener('click', (e) => {
+      let target = e.target;
+      if (target === modalContainer) {
+        hideModal();
+      }
+    });
+
+    document.querySelector("#show-modal").addEventListener('click', () => {
+      showModal("Modal title", "My modal content placeholder!");
+    });
+
     return {
         getAll: getAll,     //key values
         add: add,
@@ -127,15 +138,16 @@ let pokemonRepo = (function() {
         showDetails: showDetails,
         showLoadingMessage: showLoadingMessage,
         hideLoadingMessage: hideLoadingMessage,
-        showModal: showModal
+        showModal: showModal,
+        hideModal: hideModal
     };
 
 })();  //self executing func
 
 console.log(pokemonRepo.getAll());
 
-let pokemon = {name: "spinda", height: 1.1, types: " normal", speed: 60};
-console.log(pokemonRepo.add(pokemon));
+// let pokemon = {name: "spinda", height: 1.1, types: " normal", speed: 60};
+// console.log(pokemonRepo.add(pokemon));
 
 pokemonRepo.loadList(pokemon).then(function() {
   pokemonRepo.getAll().forEach(function(pokemon) {
