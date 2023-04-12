@@ -20,7 +20,7 @@ let pokemonRepo = (function() {
 
     function addListItem(pokemon) {
         let pokemonList = document.querySelector(".pokemon-list");
-        let listItem = document.createElement("ol");
+        let listItem = document.createElement("li");
         let button = document.createElement("button");
         button.classList.add("button-class");
         button.innerText = pokemon.name;
@@ -89,20 +89,20 @@ let pokemonRepo = (function() {
       let modal = document.createElement("div");
       modal.classList.add("modal");
 
-      let closeButtonEle = document.createElement("button");
-      closeButtonEle.classList.add("modal-close");
-      closeButtonEle.innerText = "close";
-      closeButtonEle.addEventListener("click", hideModal);
+      let closeButtonElement = document.createElement("button");
+      closeButtonElement.classList.add("modal-close");
+      closeButtonElement.innerText = "close";
+      // closeButtonEle.addEventListener("click", hideModal);
 
       let titleEle = document.createElement("h1");
-      titleEle.innerText = title;
+      titleElement.innerText = title;
 
       let contentEle = document.createElement("p");
-      contentEle.innerText = text;
+      contentElement.innerText = text;
       
-      modal.appendChild(closeButtonEle);
-      modal.appendChild(titleEle);
-      modal.appendChild(contentEle);
+      modal.appendChild(closeButtonElement);
+      modal.appendChild(titleElement);
+      modal.appendChild(contentElement);
       modalContainer.appendChild(modal);
       modalContainer.classList.add("is-visible");
     }
@@ -124,7 +124,7 @@ let pokemonRepo = (function() {
       }
     });
 
-    document.querySelector("#show-modal").addEventListener('click', () => {
+    document.querySelector("#show-modal").addEventListener("click", () => {
       showModal("Modal title", "My modal content placeholder!");
     });
 

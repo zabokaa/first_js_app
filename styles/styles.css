@@ -7,9 +7,11 @@
     --button-margin: 8px 4px;
     --button-paddy: 16px 32px;
     --font-soze-button: 18px;
+}    
 
-
-}    /* NEVER close with ';' */
+html, body {
+  font-family: Arial, sans-serif;
+}
 
 body { 
   background-image: linear-gradient(to right, var(--background-col), var(--background-col-2));
@@ -40,7 +42,7 @@ h2 {
     text-shadow: var(--text-shadow);
 }
 
-#modal-container {
+#modal-container.is-visible {
   position: fixed;
   padding: 20px;
   box-sizing: border-box;
@@ -49,10 +51,12 @@ h2 {
   width: 100%;
   height: 100%;
   background: var(--background-col);
+  /* to show it above other content */
+  z-index: 999;
   overflow: auto;
   display: grid;
   text-align: center;
-} */
+} 
 
 .modal {
   margin: auto;
@@ -87,10 +91,30 @@ h2 {
 } 
 
  #modal-container.is-visible { 
-  /* CSS for modal container - add your own desired CSS styles here */
-  display: block;
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+
+  /* to show it above other content */
+  z-index: 999;
+
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto;
+
+  /* this is used to center the modal */
+  display: grid;
+  text-align: center;
 } 
 
+.pokemon-list {
+  list-style-type: none;
+  
+}
  /* #list{
    font-size:  1.5em;
    margin-left: 90px;
