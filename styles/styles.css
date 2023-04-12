@@ -6,7 +6,7 @@
     --text-shadow: 1.5px 1.5px #FFFFFF;
     --button-margin: 8px 4px;
     --button-paddy: 16px 32px;
-    --font-soze-button: 18px;
+    --font-size-button: 18px;
 }    
 
 html, body {
@@ -31,8 +31,9 @@ h2 {
     background-color: var(--primary-color);
     color: var(--secondary-color) ;
     border: double;
+    border-radius: 10px;
     padding: var(--button-paddy);
-    font-size: var(--font-soze-button);
+    font-size: var(--font-size-button);
     font-style: oblique;
     font-weight: bold;
     text-decoration: none;
@@ -90,30 +91,8 @@ h2 {
   display: none;
 } 
 
- #modal-container.is-visible { 
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-
-  /* to show it above other content */
-  z-index: 999;
-
-  /* to allow scrolling if the screen is not high enough*/
-  overflow: auto;
-
-  /* this is used to center the modal */
-  display: grid;
-  text-align: center;
-} 
-
 .pokemon-list {
   list-style-type: none;
-  
 }
  /* #list{
    font-size:  1.5em;
