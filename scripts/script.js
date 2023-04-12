@@ -53,7 +53,7 @@ let pokemonRepo = (function () {
     }).then(function (details) {
       pokemon.imageUrl = details.sprites.front_default;
       pokemon.height = details.height;
-      pokemon.types = details.types;
+      pokemon.weight = details.weight;
     }).catch(function (e) {
       hideLoadingMessage(e);
       console.error(e);
@@ -88,7 +88,6 @@ let pokemonRepo = (function () {
   function showModal(pokemon) {
 
     modalContainer.innerHTML = " ";
- 
 
     let modal = document.createElement("div");
     modal.classList.add("modal");
@@ -104,14 +103,18 @@ let pokemonRepo = (function () {
     let imageEle = document.createElement("img");
     imageEle.src = pokemon.imageUrl;
     imageEle.classList.add("pokemon-image");
-
+ 
     let contentEle = document.createElement("p");
-    contentEle.innerText = "height: ${pokemon.height}";
+    contentEle.innerText = `height: ${pokemon.height}`;
+
+    let weightEle = document.createElement("p");
+    weightEle.innerText = `weight: ${pokemon.weight}`;
 
     modal.appendChild(closeButtonEle);
     modal.appendChild(titleEle);
     modal.appendChild(imageEle);
     modal.appendChild(contentEle);
+    modal.appendChild(weightEle);
     modalContainer.appendChild(modal);
    
 
