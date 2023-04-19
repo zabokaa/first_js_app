@@ -51,7 +51,7 @@ let pokemonRepo = (function () {
 
 			let modalButton = $('<button></button>')
 				.text(pokemon.name)
-				.addClass('btn btn-primary btn-lg text-capitalize text-warning bg-secondary border border-warning')
+				.addClass('btn btn-primary btn-lg text-warning bg-secondary border border-warning')
 				.attr({
 					type: 'button',
 					'data-toggle': 'modal',
