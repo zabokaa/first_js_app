@@ -8,7 +8,7 @@ let pokemonRepo = (function () {
 	function getPokemonListContents() {
 		return pokemonList;
 	}
-	// // Loads initial object of name and detailsUrl and adds it to the pokemonList
+
 	function loadDataFromApi() {
 		return $.ajax(apiUrl)
 			.then((data) => {
@@ -23,7 +23,6 @@ let pokemonRepo = (function () {
 			.catch((err) => console.error(err));
 	}
 
-	// // Loads the auxiliary details as key/value pairs for each Pokemon and stores it in the pokemonList
 	function loadDetails(listItem) {
 		let url = listItem.detailsUrl;
 		return $.ajax(url)
