@@ -22,7 +22,10 @@ let pokemonRepo = (function () {
     let pokemonList = document.querySelector(".pokemon-list");
     let listItem = document.createElement("li");
     let button = document.createElement("button");
-    button.classList.add("button-class");
+
+    button.classList.add("btn");
+    button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "#bootstrapModal");
     button.innerText = pokemon.name;
     listItem.appendChild(button);
     pokemonList.appendChild(listItem);
@@ -44,26 +47,7 @@ let pokemonRepo = (function () {
     }
   };
 
-  // Look for your fav poki
-  // searchInput.addEventListener("input", function () {
-  //   pokemonRepo.filterSearch(searchPoki);
-  // });
-
-  // function filterSearch(searchPoki) {
-  //   let filterValue = searchPoki.value.toLowerCase();
   
-  //   // filter the pokemonList array based on the filterValue
-  //   let filteredPokemon = pokemonList.filter(function (pokemon) {
-  //     return pokemon.name.toLowerCase().indexOf(filterValue) > -1;
-  //   });
-  
-  //   // update the displayed list of Pokemon based on the filtered results
-  //   let pokemonListElement = document.querySelector(".pokemon-list");
-  //   pokemonListElement.innerHTML = "";
-  //   filteredPokemon.forEach(function (pokemon) {
-  //     pokemonRepository.addListItem(pokemon);
-  //   });
-  // }
   function loadDetails(pokemon) {
     showLoadingMessage();
     let url = pokemon.detailsUrl;
@@ -126,17 +110,40 @@ let pokemonRepo = (function () {
     modalBody.append(weightEle);
     }
  
+  function searchPokemon() {
+    let searchInput = document.getElementById('search-input');
+    let searchText = searchInput.value.toLowerCase();
+    let allPokemon = document.querySelectorAll('.list-group-item');
+
+    allPokemon.forEach(function(pokemon) {
+      let pokemonText = pokemon.querySelector('.pokemon-button').innerText.toLowerCase();
+      let searchList = document.querySelector('.pokemon-list');
+
+      if (pokemonText.includes(searchText)) {
+        searchList.classList.add('search-list');
+        pokemon.style.display = 'inline-block';
+      } else {
+        pokemon.style.display = 'none';
+      }
+
+      if (!searchInput.value) {
+        searchList.classList.remove('search-list');
+      }
+
+    });
+  }  
+
   return {
     getAll: getAll,     //key values
     add: add,
     addListItem: addListItem,
     loadDetails: loadDetails,
     loadList: loadList,
-    // filterSearch: filterSearch,
     showDetails: showDetails,
     showLoadingMessage: showLoadingMessage,
     hideLoadingMessage: hideLoadingMessage,
     showModal: showModal,
+    searchPokemon: searchPokemon
     // hideModal: hideModal
   };
 
