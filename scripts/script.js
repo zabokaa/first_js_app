@@ -28,18 +28,9 @@ let pokemonRepo = (function () {
 		let url = listItem.detailsUrl;
 		return $.ajax(url)
 			.then((data) => {
-				listItem.abilities = data.abilities;
 				listItem.height = data.height;
 				listItem.weight = data.weight;
 				listItem.imageUrl = data.sprites.other.dream_world.front_default;
-				listItem.types = [];
-				data.types.forEach(function (itemType) {
-					listItem.types.push(itemType.type.name);
-				});
-				listItem.abilities = [];
-				data.abilities.forEach(function (itemAbility) {
-					listItem.abilities.push(itemAbility.ability.name);
-				});
 			})
 			.catch((err) => console.error(err));
 	}
