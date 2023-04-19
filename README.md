@@ -15,11 +15,13 @@ data from an external API and enables the viewing of data points in detail
 
 ## key features
 - load data from an external source (API)
-- view a list of items
+- view a list of items (name, img)
+- search function for names (by letter)
 - on user action, view details for that item
 
 ## project status
-project is: _in progress
+- project is: _in progress
+- *still to do: search function only for beginning of words*
 
 ## acknowledgements
 this project was based on full-stack immersion course @ CareerFoundry
