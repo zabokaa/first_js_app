@@ -1,158 +1,148 @@
-// IIFE:
-
 let pokemonRepo = (function () {
-  let pokemonList = [];
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=99";
-  // let searchPoki = document.querySelector("#search-poki");
+	let pokemonList = [];
+	let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=99";
 
-  function getAll() {
-    return pokemonList;
-  };
+	function addToPokemonList(pokemonFromApi) {
+		pokemonList.push(pokemonFromApi);
+	}
+	function getPokemonListContents() {
+		return pokemonList;
+	}
+	// // Loads initial object of name and detailsUrl and adds it to the pokemonList
+	function loadDataFromApi() {
+		return $.ajax(apiUrl)
+			.then((data) => {
+				data.results.forEach((item) => {
+					let pokemon = {
+						name: item.name,
+						detailsUrl: item.url,
+					};
+					addToPokemonList(pokemon);
+				});
+			})
+			.catch((err) => console.error(err));
+	}
 
-  function add(pokemon) {
-    if (typeof pokemon === "object" && "name" in pokemon) {
-      pokemonList.push(pokemon);
-    }
-    else {
-      console.log("uncorrect pokemon");
-    }
-  };
+	// // Loads the auxiliary details as key/value pairs for each Pokemon and stores it in the pokemonList
+	function loadDetails(listItem) {
+		let url = listItem.detailsUrl;
+		return $.ajax(url)
+			.then((data) => {
+				listItem.abilities = data.abilities;
+				listItem.height = data.height;
+				listItem.weight = data.weight;
+				listItem.imageUrl = data.sprites.other.dream_world.front_default;
+				listItem.types = [];
+				data.types.forEach(function (itemType) {
+					listItem.types.push(itemType.type.name);
+				});
+				listItem.abilities = [];
+				data.abilities.forEach(function (itemAbility) {
+					listItem.abilities.push(itemAbility.ability.name);
+				});
+			})
+			.catch((err) => console.error(err));
+	}
 
-  function addListItem(pokemon) {
-    let pokemonList = document.querySelector(".pokemon-list");
-    let listItem = document.createElement("li");
-    let button = document.createElement("button");
+	function loadList(pokemon) {
+		loadDetails(pokemon).then(() => {
+			let pokemonGrid = $(".row");
+			let cardContainer = $('<div></div>').addClass('col-xs col-sm-6 col-md-4');
+			let card = $('<div></div>').addClass('card pokemon-card text-center bg-light my-2 border border-warning');
 
-    button.classList.add("btn");
-    button.setAttribute("data-toggle", "modal");
-    button.setAttribute("data-target", "#bootstrapModal");
-    button.innerText = pokemon.name;
-    listItem.appendChild(button);
-    pokemonList.appendChild(listItem);
-    /* adding 1st event listener: */
-    button.addEventListener("click", () => showDetails(pokemon));
-  };
+			let cardImg = $('<img>')
+				.addClass('card-img-top mx-auto my-3')
+				.attr({src: pokemon.imageUrl})
+				.css({width: "100px", height: "100px"});
 
-  function showLoadingMessage() {
-    let loadingMessage = document.createElement("div");
-    loadingMessage.setAttribute("id", "loading-message")
-    loadingMessage.innerText = "Loading...";
-    document.body.prepend(loadingMessage);
-  };
+			let cardBody = $('<div></div>');
+			cardBody.addClass('card-body');
 
-  function hideLoadingMessage() {
-    let loadingMessage = document.querySelector("#loading-message");
-    if (loadingMessage) {
-      loadingMessage.remove();
-    }
-  };
+			let modalButton = $('<button></button>')
+				.text(pokemon.name)
+				.addClass('btn btn-primary btn-lg text-capitalize text-warning bg-secondary border border-warning')
+				.attr({
+					type: 'button',
+					'data-toggle': 'modal',
+					'data-target': '#ModalCenter',
+				});
 
-  
-  function loadDetails(pokemon) {
-    showLoadingMessage();
-    let url = pokemon.detailsUrl;
-    return fetch(url).then(function (response) {
-      hideLoadingMessage();
-      return response.json();
-    }).then(function (details) {
-      pokemon.imageUrl = details.sprites.front_default;
-      pokemon.height = details.height;
-      pokemon.weight = details.weight;
-    }).catch(function (e) {
-      hideLoadingMessage(e);
-      console.error(e);
-    });
-  };
+			cardBody.append(modalButton);
+			card.append(cardImg);
+			card.append(cardBody);
+			cardContainer.append(card);
+			pokemonGrid.append(cardContainer);
 
-  function loadList() {
-    showLoadingMessage();
-    return fetch(apiUrl).then(function (response) {
-      hideLoadingMessage();
-      return response.json();
-    }).then(function (json) {
-      json.results.forEach(function (item) {
-        let pokemon = {
-          name: item.name,
-          detailsUrl: item.url
-        };
-        add(pokemon);
-      });
-    }).catch(function (e) {
-      hideLoadingMessage(e);
-      console.error(e);
-    });
-  };
+			modalButton.on('click', function () {
+				showModal(pokemon);
+			});
+		});
+	}
+	function showModal(pokemon) {
+		let modalBody = $('.modal-body');
+		modalBody.addClass('text-center');
 
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      showModal(pokemon);
-    });
-  };
+		let modalTitle = $('.modal-title');
 
-  function showModal(pokemon) {
-    let modalBody = $(".modal-body");
-    let modalTitle = $(".modal-title");
-    let modalHeader = $(".modal-header");
-    modalTitle.empty();
-    modalBody.empty();
+		modalBody.empty();
+		modalTitle.empty();
 
-    let titleEle = $("<h1>" + pokemon.name + "</h1>");
-    let imageEle = $('<img class="modal-img"');
-    imageEle.attr("src", pokemon.imageUrl);
-  
- 
-    let contentEle = $("<p>" + "heigth: " + pokemon.height + "</p>");
-    let weightEle = $("<p>" + "weight: " + pokemon.weight + "</p>");
+		let name = $('<h2></h2>');
+		name.text(pokemon.name);
+		// name.addClass('text-capitalize');
 
-    modalTitel.append(titleEle);
-    modalBody.append(imageEle);
-    modalBody.append(contentEle);
-    modalBody.append(weightEle);
-    }
- 
-  function searchPokemon() {
-    let searchInput = document.getElementById('search-input');
-    let searchText = searchInput.value.toLowerCase();
-    let allPokemon = document.querySelectorAll('.list-group-item');
+		let imgEle = $('<img>');
+		imgEle.attr('src', pokemon.imageUrl);
+		imgEle.addClass('text-center w-30');
 
-    allPokemon.forEach(function(pokemon) {
-      let pokemonText = pokemon.querySelector('.pokemon-button').innerText.toLowerCase();
-      let searchList = document.querySelector('.pokemon-list');
+		let heightEle = $('<p></p>');
+		heightEle.text(`height: ${pokemon.height}`);
 
-      if (pokemonText.includes(searchText)) {
-        searchList.classList.add('search-list');
-        pokemon.style.display = 'inline-block';
-      } else {
-        pokemon.style.display = 'none';
-      }
+		let weightEle = $('<p></p>');
+		weightEle.text(`weight: ${pokemon.weight}`);
 
-      if (!searchInput.value) {
-        searchList.classList.remove('search-list');
-      }
+		modalTitle.append(name);
+		modalBody.append(imgEle);
+		modalBody.append(heightEle);
+		modalBody.append(weightEle);
 
-    });
-  }  
+	}
 
-  return {
-    getAll: getAll,     //key values
-    add: add,
-    addListItem: addListItem,
-    loadDetails: loadDetails,
-    loadList: loadList,
-    showDetails: showDetails,
-    showLoadingMessage: showLoadingMessage,
-    hideLoadingMessage: hideLoadingMessage,
-    showModal: showModal,
-    searchPokemon: searchPokemon
-    // hideModal: hideModal
-  };
+	return {   //key values
+		addToPokemonList: addToPokemonList,
+		getPokemonListContents: getPokemonListContents,
+		loadDataFromApi: loadDataFromApi,
+		loadDetails: loadDetails,
+		loadList: loadList
+	};
+})();
 
-})();  //self executing func
-
-pokemonRepo.loadList().then(function () {
-  pokemonRepo.getAll().forEach(function (pokemon) {
-    pokemonRepo.addListItem(pokemon);
-  });
+pokemonRepo.loadDataFromApi().then(function () {
+	pokemonRepo.getPokemonListContents().forEach((pokemon) => {
+		pokemonRepo.loadList(pokemon);
+	});
 });
 
+function searchByName() {
+	// let filter, cards, a, txtValue;
+	let filter = $('#input').val().toUpperCase();
+	let cards = $('#pokemon-grid .card');
+	for (i = 0; i < cards.length; i++) {
+		let card = cards[i].querySelector('.card-body').querySelector('.btn');
+
+		let textCont = card.textContent || card.innerText;
+		if (textCont.toUpperCase().indexOf(filter) > -1) {
+			cards[i].style.display = '';
+		} else {
+			cards[i].style.display = 'none';
+		}
+	}
+}
+let inputEle = $('#input');
+inputEle.on('keyup', searchByName);
+
+let clearSearchButton = $('#clear-search');
+clearSearchButton.on('click', function () {
+	$('#input').val('').trigger('keyup');
+});
 
