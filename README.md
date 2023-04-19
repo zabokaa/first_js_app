@@ -20,8 +20,8 @@ data from an external API and enables the viewing of data points in detail
 - on user action, view details for that item
 
 ## project status
-project is: _in progress
-*still to do: search function only for beginning of words*
+- project is: _in progress
+- *still to do: search function only for beginning of words*
 
 ## acknowledgements
 this project was based on full-stack immersion course @ CareerFoundry
