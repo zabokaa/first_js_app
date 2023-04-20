@@ -37,25 +37,21 @@ let pokemonRepo = (function () {
 	function loadList(pokemon) {
 		loadDetails(pokemon).then(() => {
 			let pokemonGrid = $(".row");
-			let cardContainer = $('<div></div>').addClass('col-xs col-sm-6 col-md-4');
-			let card = $('<div></div>').addClass('card pokemon-card text-center bg-light my-2 border border-warning');
+			let cardContainer = $("<div></div>").addClass("col-xs col-sm-6 col-md-4");
+			let card = $("<div></div>").addClass("card pokemon-card text-center bg-light my-2 border border-warning");
 
-			let cardImg = $('<img>')
-				.addClass('card-img-top mx-auto my-3')
+			let cardImg = $("<img>")
+				.addClass("card-img-top mx-auto my-3")
 				.attr({src: pokemon.imageUrl})
 				.css({width: "100px", height: "100px"});
 
-			let cardBody = $('<div></div>');
-			cardBody.addClass('card-body');
+			let cardBody = $("<div></div>");
+			cardBody.addClass("card-body");
 
-			let modalButton = $('<button></button>')
+			let modalButton = $("<button></button>")
 				.text(pokemon.name)
-				.addClass('btn btn-primary btn-lg text-warning bg-secondary border border-warning')
-				.attr({
-					type: 'button',
-					'data-toggle': 'modal',
-					'data-target': '#ModalCenter',
-				});
+				.addClass("btn btn-primary btn-lg text-warning bg-secondary border border-warning")
+				.attr({type: "button", "data-toggle": "modal", "data-target": '#ModalCenter'});
 
 			cardBody.append(modalButton);
 			card.append(cardImg);
@@ -63,32 +59,32 @@ let pokemonRepo = (function () {
 			cardContainer.append(card);
 			pokemonGrid.append(cardContainer);
 
-			modalButton.on('click', function () {
+			modalButton.on("click", function () {
 				showModal(pokemon);
 			});
 		});
 	}
 	function showModal(pokemon) {
-		let modalBody = $('.modal-body');
-		modalBody.addClass('text-center');
+		let modalBody = $(".modal-body");
+		modalBody.addClass("text-center");
 
-		let modalTitle = $('.modal-title');
+		let modalTitle = $(".modal-title");
 
 		modalBody.empty();
 		modalTitle.empty();
 
-		let name = $('<h2></h2>');
+		let name = $("<h2></h2>");
 		name.text(pokemon.name);
 		// name.addClass('text-capitalize');
 
-		let imgEle = $('<img>');
-		imgEle.attr('src', pokemon.imageUrl);
-		imgEle.addClass('text-center w-30');
+		let imgEle = $("<img>");
+		imgEle.attr("src", pokemon.imageUrl);
+		imgEle.addClass("text-center w-30");
 
-		let heightEle = $('<p></p>');
+		let heightEle = $("<p></p>");
 		heightEle.text(`height: ${pokemon.height}`);
 
-		let weightEle = $('<p></p>');
+		let weightEle = $("<p></p>");
 		weightEle.text(`weight: ${pokemon.weight}`);
 
 		modalTitle.append(name);
@@ -114,25 +110,24 @@ pokemonRepo.loadDataFromApi().then(function () {
 });
 
 function searchByName() {
-	// let filter, cards, a, txtValue;
-	let filter = $('#input').val().toUpperCase();
-	let cards = $('#pokemon-grid .card');
+	let filter = $("#input").val().toUpperCase();
+	let cards = $("#pokemon-grid .card");
 	for (i = 0; i < cards.length; i++) {
-		let card = cards[i].querySelector('.card-body').querySelector('.btn');
+		let card = cards[i].querySelector(".card-body").querySelector(".btn");
 
 		let textCont = card.textContent || card.innerText;
 		if (textCont.toUpperCase().indexOf(filter) > -1) {
-			cards[i].style.display = '';
+			cards[i].style.display = "";
 		} else {
-			cards[i].style.display = 'none';
+			cards[i].style.display = "none";
 		}
 	}
 }
-let inputEle = $('#input');
-inputEle.on('keyup', searchByName);
+let inputEle = $("#input");
+inputEle.on("keyup", searchByName);
 
-let clearSearchButton = $('#clear-search');
-clearSearchButton.on('click', function () {
-	$('#input').val('').trigger('keyup');
+let clearSearchButton = $("#clear-search");
+clearSearchButton.on("click", function () {
+	$("#input").val("").trigger("keyup");
 });
 
