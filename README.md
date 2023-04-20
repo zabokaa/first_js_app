@@ -1,11 +1,12 @@
 ##  pokédex  named 
-# :purple_circle: *My Pokemon List* :purple_circle:
+# :purple_circle: *MyPokémon App* :purple_circle:
 --> my very first js app <--
 ![app on github](./assets/img/webpage.png?raw=true "Img of deployed app on HithubPages")
 ## table of contents
 * [objective](#objective)
 * [key features](#key-features)
 * [project status](#project-status)
+* [link to github page](#link-to-github-page)
 * [acknowledgements](#acknowledgements)
 
 ## objective
@@ -22,6 +23,9 @@ data from an external API and enables the viewing of data points in detail
 ## project status
 - project is: _in progress
 - *still to do: search function only for beginning of words*
+
+## link to github page
+https://zabokaa.github.io/first_js_app/
 
 ## acknowledgements
 this project was based on full-stack immersion course @ CareerFoundry
