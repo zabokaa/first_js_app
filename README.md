@@ -1,7 +1,7 @@
 ##  pokédex  named 
 # :purple_circle: *My Pokemon List* :purple_circle:
 --> my very first js app <--
-
+![app on github](./assets/img/webpage.png?raw=true "Img of deployed app on HithubPages")
 ## table of contents
 * [objective](#objective)
 * [key features](#key-features)
