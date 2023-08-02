@@ -5,6 +5,7 @@
 ## table of contents
 * [objective](#objective)
 * [key features](#key-features)
+* [technologies](#technologies)
 * [project status](#project-status)
 * [link to github page](#link-to-github-page)
 * [acknowledgements](#acknowledgements)
@@ -19,6 +20,9 @@ data from an external API and enables the viewing of data points in detail
 - view a list of items (name, img)
 - search function for names (by letter)
 - on user action, view details for that item
+
+## technologies
+HTML | CSS | JavaScript | Bootstrap
 
 ## project status
 - project is: _in progress
